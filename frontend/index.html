@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- bug 1 language change to eng  -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- // bug 2 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase — E-Commerce Store</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="logo">🛍️ ShopEase</div>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search products..." oninput="searchProducts()" />
+      <button type="button" onclick="searchProducts()">🔍</button>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="btn-wishlist" onclick="toggleWishlist()">❤️ Wishlist <span id="wishlist-count">0</span></button>
+      <button type="button" class="btn-cart"     onclick="openCart()">🛒 Cart <span id="cart-count">0</span></button>
+      <button type="button" class="btn-login"    onclick="openLogin()">Login</button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO BANNER ===== -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Shop the Latest Trends</h1>
+      <p>Discover thousands of products at unbeatable prices. Free shipping on orders above ₹499.</p>
+      <button type="button" class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+    </div>
+    <div class="hero-image">
+      <!--  added alt bug 3  -->
+      <img src="/frontend/herobg.png" alt="ShopEase hero image" class="hero-img" />
+    </div>
+  </section>
+
+  <!-- ===== CATEGORY TABS ===== -->
+  <section class="categories" id="categories">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="category-tabs">
+      <button class="cat-btn active" data-cat="all"         onclick="filterCategory('all')">All</button>
+      <button class="cat-btn"        data-cat="electronics" onclick="filterCategory('electronics')">📱 Electronics</button>
+      <button class="cat-btn"        data-cat="fashion"     onclick="filterCategory('fashion')">👗 Fashion</button>
+      <button class="cat-btn"        data-cat="home"        onclick="filterCategory('home')">🏠 Home & Kitchen</button>
+      <button class="cat-btn"        data-cat="books"       onclick="filterCategory('books')">📚 Books</button>
+      <button class="cat-btn"        data-cat="sports"      onclick="filterCategory('sports')">⚽ Sports</button>
+    </div>
+  </section>
+
+  <!-- ===== SORT & FILTER BAR ===== -->
+  <div class="sort-bar">
+    <span id="product-count">Showing all products</span>
+    <select id="sort-select" onchange="sortProducts()">
+      <option value="default">Sort by: Default</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating">Top Rated</option>
+      <option value="newest">Newest First</option>
+    </select>
+  </div>
+
+  <!-- ===== PRODUCTS GRID ===== -->
+  <section class="products-section" id="products">
+    <div class="products-grid" id="products-grid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>Your Cart 🛒</h2>
+      <button type="button" class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <!-- Populated by JS -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cart-total">₹0</span>
+      </div>
+      <div class="cart-discount">
+        <input type="text" id="coupon-input" placeholder="Enter coupon code" />
+        <!-- // bug 4 -->
+        <button type="button" onclick="applyCoupon()">Apply</button>
+      </div>
+      <button type="button" class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ===== PRODUCT MODAL ===== -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button type="button" class="close-btn" onclick="closeModal()">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="newsletter">
+    <h2>Get Exclusive Deals</h2>
+    <p>Subscribe to our newsletter for the best offers straight to your inbox.</p>
+    <div class="newsletter-form">
+      <!-- // bug 5 -->
+      <input type="email" id="nl-email" placeholder="Enter your email" />
+      <button type="button" onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>ShopEase</h3>
+        <p>Your one-stop shop for everything you need.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>🐦 Twitter &nbsp; 📘 Facebook &nbsp; 📸 Instagram</p>
+      </div>
+    </div>
+    <!-- // bug 6 -->
+    <p class="footer-copy">&copy; 2024 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
